@@ -4,6 +4,6 @@ class Task < ActiveRecord::Base
   has_many :customer_tasks
   has_many :customers, through: :customer_tasks
 
-  has_many :module_tasks
-  has_many :modules, through: :module_tasks
+  has_many :project_tasks
+  has_many :projects, through: :project_tasks
 end

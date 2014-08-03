@@ -1,5 +1,5 @@
 class Customer < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :product
 
   has_many :customer_features
   has_many :features, through: :customer_features

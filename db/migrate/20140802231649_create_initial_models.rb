@@ -1,6 +1,6 @@
 class CreateInitialModels < ActiveRecord::Migration
   def change
-    create_table :projects do |t|
+    create_table :product do |t|
       t.string :name
 
       t.timestamps
@@ -9,7 +9,7 @@ class CreateInitialModels < ActiveRecord::Migration
     create_table :customers do |t|
       t.string :name
 
-      t.references :project, index: true
+      t.references :product, index: true
 
       t.timestamps
     end
@@ -17,15 +17,15 @@ class CreateInitialModels < ActiveRecord::Migration
     create_table :features do |t|
       t.string :name
 
-      t.references :project, index: true
+      t.references :product, index: true
 
       t.timestamps
     end
 
-    create_table :modules do |t|
+    create_table :projects do |t|
       t.string :name
 
-      t.references :project, index: true
+      t.references :product, index: true
 
       t.timestamps
     end
@@ -53,8 +53,8 @@ class CreateInitialModels < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :module_features do |t|
-      t.references :module, index: true
+    create_table :project_features do |t|
+      t.references :project, index: true
       t.references :feature, index: true
 
       t.timestamps
@@ -74,8 +74,8 @@ class CreateInitialModels < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :module_tasks do |t|
-      t.references :module, index: true
+    create_table :project_tasks do |t|
+      t.references :project, index: true
       t.references :task, index: true
 
       t.timestamps

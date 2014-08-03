@@ -1,5 +1,9 @@
 class Project < ActiveRecord::Base
-  has_many :customers
-  has_many :features
-  has_many :modules
+  belongs_to :product
+
+  has_many :project_features
+  has_many :features, through: :project_features
+
+  has_many :project_tasks
+  has_many :tasks, through: :project_tasks
 end

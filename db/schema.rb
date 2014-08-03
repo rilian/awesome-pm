@@ -48,56 +48,56 @@ ActiveRecord::Schema.define(version: 20140802231649) do
 
   create_table "customers", force: true do |t|
     t.string   "name"
-    t.integer  "project_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "customers", ["project_id"], name: "index_customers_on_project_id", using: :btree
+  add_index "customers", ["product_id"], name: "index_customers_on_product_id", using: :btree
 
   create_table "features", force: true do |t|
     t.string   "name"
-    t.integer  "project_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "features", ["project_id"], name: "index_features_on_project_id", using: :btree
+  add_index "features", ["product_id"], name: "index_features_on_product_id", using: :btree
 
-  create_table "module_features", force: true do |t|
-    t.integer  "module_id"
+  create_table "product", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "project_features", force: true do |t|
+    t.integer  "project_id"
     t.integer  "feature_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "module_features", ["feature_id"], name: "index_module_features_on_feature_id", using: :btree
-  add_index "module_features", ["module_id"], name: "index_module_features_on_module_id", using: :btree
+  add_index "project_features", ["feature_id"], name: "index_project_features_on_feature_id", using: :btree
+  add_index "project_features", ["project_id"], name: "index_project_features_on_project_id", using: :btree
 
-  create_table "module_tasks", force: true do |t|
-    t.integer  "module_id"
+  create_table "project_tasks", force: true do |t|
+    t.integer  "project_id"
     t.integer  "task_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "module_tasks", ["module_id"], name: "index_module_tasks_on_module_id", using: :btree
-  add_index "module_tasks", ["task_id"], name: "index_module_tasks_on_task_id", using: :btree
-
-  create_table "modules", force: true do |t|
-    t.string   "name"
-    t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "modules", ["project_id"], name: "index_modules_on_project_id", using: :btree
+  add_index "project_tasks", ["project_id"], name: "index_project_tasks_on_project_id", using: :btree
+  add_index "project_tasks", ["task_id"], name: "index_project_tasks_on_task_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "projects", ["product_id"], name: "index_projects_on_product_id", using: :btree
 
   create_table "stories", force: true do |t|
     t.text     "body"
